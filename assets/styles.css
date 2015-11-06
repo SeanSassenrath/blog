@@ -1,0 +1,30 @@
+.debug {
+  border: 1px solid red;
+}
+body {
+  background-color: #DBDEE5;
+}
+nav.top {
+  height: 60px;
+}
+.nav-container {
+  padding-top: 20px;
+  max-width: 900px;
+  position: relative;
+  margin: 0 auto;
+}
+.nav-container h4 {
+  display: inline;
+}
+.nav-container .right-nav-container {
+  position: absolute;
+  right: 20px;
+  display: inline-flex;
+  justify-content: space-between;
+  width: 250px;
+}
+section {
+  width: 80%;
+  max-width: 900px;
+  margin: 0 auto;
+}

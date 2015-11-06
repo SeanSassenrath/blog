@@ -1,8 +1,77 @@
 <html>
 <head>
-  <title></title>
+  <title>SCS</title>
+  <link rel="stylesheet" type="text/css" href="./assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="./assets/styles.css">
 </head>
 <body>
+  <nav class="top debug">
+    <div class="nav-container" style="padding: 20px;">
+      <h4 class="debug">Sean's Blog</h4>
+      <div class="right-nav-container debug">
+        <a href="1">Archive</a>
+        <a href="1">About</a>
+        <a href="1">Subscribe</a>
+      </div>
+    </div>
+  </nav>
+  <section>
+    <form>
+      <input id="username" type="text" placeholder="username"/>
+      <input id="password" type="text" placeholder="password" />
+      <input id="submit" type="submit">
+    </form>
+  </section>
+  <section>
+    <article>
+      <header>
+        <h2>Intro to Gulp</h2>
+        <h4>The task runners task runner for devs</h4>
+        <h5>6 - 24 - 1987</h5>
+      </header>
+      <main>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam porta tortor at sem posuere tristique. Maecenas consequat purus vitae elit congue, nec maximus neque blandit. Fusce enim diam, elementum id enim non, volutpat mollis nunc. Praesent quis odio vel lorem viverra fermentum. Mauris porttitor ligula magna, a auctor elit eleifend ac. Praesent vitae est vel eros elementum laoreet feugiat eu turpis. In consequat quam sit amet luctus tincidunt. Ut ut arcu a elit bibendum sollicitudin. Aenean massa nisi, porttitor quis dui a, scelerisque consequat augue. Suspendisse ut gravida orci. Curabitur in feugiat metus. Morbi volutpat quis quam a laoreet.
+
+        Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec magna velit, eleifend vel mollis fringilla, cursus a mauris. Nunc nec ex eu dui pretium accumsan et ut ante. Vestibulum consequat sit amet augue quis scelerisque. Morbi ornare diam sit amet quam convallis, eu fermentum nibh auctor. Curabitur nisl magna, pharetra quis posuere eu, blandit id magna. Nunc lectus nisl, tristique non ultricies vel, cursus id massa. Donec faucibus mi non nisi faucibus, quis placerat turpis convallis. Mauris finibus tristique sem consectetur egestas. Vestibulum ac turpis porta, suscipit odio et, condimentum ex. Integer fringilla facilisis cursus. Nullam nulla leo, condimentum ut mauris in, porttitor mollis ipsum. Vivamus et augue sit amet velit blandit consectetur. Etiam auctor, nibh eu lobortis porta, libero ipsum aliquam dui, vel varius justo diam eu velit. Phasellus tempor orci at eros hendrerit, ut blandit purus accumsan.
+
+        Fusce placerat vestibulum lorem, ut consectetur ipsum. Phasellus et nisi nisi. Sed volutpat condimentum sem at faucibus. Phasellus cursus interdum nisi, id porttitor lacus imperdiet quis. Quisque a odio turpis. Phasellus ultrices, tortor non congue congue, nisl neque tincidunt quam, vitae tincidunt odio felis finibus mi. Aenean scelerisque sagittis eros. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Etiam eget massa vel risus ultrices porta id vel sapien. Cras auctor lobortis sapien.
+        </p>
+      </main>
+    </article>
+  </section>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script>
+  $(document).ready(function() {
+    console.log("jquery is running");
+
+    var token = localStorage.getItem('userToken')
+    console.log(token)
+
+    $("#submit").on('click', function(e) {
+      console.log("clicked")
+      e.preventDefault();
+
+      var data = "username=" + $('#username').val() + "&password=" + $('#password').val();
+      console.log(data)
+
+      $.ajax({
+        url: "http://localhost:4444/auth/verify",
+        type: 'post',
+        data: data,
+      }).done(function(response) {
+        console.log("Good ", response)
+        if(response.message !== "incorrect password") {
+          localStorage.setItem('userToken', response.token)
+        } else {
+        }
+      }).fail(function(response) {
+        console.log("Bad", response)
+      })
+    })
+
+  })
+
+  </script>
 
 </body>
 </html>
