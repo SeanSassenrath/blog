@@ -45,7 +45,8 @@
     console.log("jquery is running");
 
     var token = localStorage.getItem('userToken')
-    console.log(token)
+    var user = localStorage.getItem('userProfile')
+    console.log(JSON.parse(user))
 
     $("#submit").on('click', function(e) {
       console.log("clicked")
@@ -60,8 +61,12 @@
         data: data,
       }).done(function(response) {
         console.log("Good ", response)
+
+        var user = response['user'];
+        console.log("user is ", user)
         if(response.message !== "incorrect password") {
           localStorage.setItem('userToken', response.token)
+          localStorage.setItem('userProfile', JSON.stringify(user))
         } else {
         }
       }).fail(function(response) {
